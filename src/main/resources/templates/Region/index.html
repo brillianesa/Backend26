@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Hello</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <a th:href="@{region/form}">CREATE</a>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each = "region : ${regions}">
+                    <td th:text="${region.id}"></td>
+                    <td th:text="${region.name}"></td>
+                    <td>EDIT | DELETE </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

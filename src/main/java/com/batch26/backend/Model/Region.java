@@ -22,6 +22,9 @@ public class Region{
     @OneToMany(mappedBy = "region")
     private List<Department> department;
 
+    public Region(){
+        
+    }
     public Region(Integer id, String name) {
         this.id = id;
         this.name = name;

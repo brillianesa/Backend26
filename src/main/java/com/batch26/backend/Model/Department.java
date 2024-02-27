@@ -2,6 +2,7 @@ package com.batch26.backend.Model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ import org.hibernate.annotations.ManyToAny;
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "department_id")
     private Integer id;
     private String name;
 
