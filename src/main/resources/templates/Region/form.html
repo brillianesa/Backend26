@@ -9,8 +9,8 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <div>
-        <form method="POST" th:action="@{save}">
+    <div> 
+        <form method="POST" th:action="@{/region/save}">
             <div>
                 <input id="id" type="text" th:field="${region.id}"/>
                 <input id="name" type="text" th:field="${region.name}"/>

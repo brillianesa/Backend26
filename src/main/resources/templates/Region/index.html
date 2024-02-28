@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>Hello World</h1>
-    <a th:href="@{region/form}">CREATE</a>
+    <a th:href="@{/region/form}">CREATE</a>
     <div>
         <table>
             <thead>
@@ -24,7 +24,12 @@
                 <tr th:each = "region : ${regions}">
                     <td th:text="${region.id}"></td>
                     <td th:text="${region.name}"></td>
-                    <td>EDIT | DELETE </td>
+                    <td>
+                        <form th:action="@{/region/delete/{id}(id=${region.id})}" method="post" onclick="return confirm('You sure want to delete?') ">
+                          <input type="submit" value="DELETE">
+                        </form>
+                         <a th:href="@{/region/form/{id}(id=${region.id})}">EDIT</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

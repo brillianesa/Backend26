@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,16 +23,30 @@ public class RegionController {
         return "region/index";
     }
 
-    @GetMapping("form")
-    public String form( Model model){
-        model.addAttribute("region", new Region());
+    @GetMapping(value = {"form", "form/{id}"})
+    public String form(Model model, @PathVariable(required = false) Integer id){
+        if(id != null){
+            model.addAttribute("region", regionRepository.findById(id));
+        }else{
+            model.addAttribute("region", new Region());
+        }
         return "region/form";
     }
 
     @PostMapping("save")
     public String insert(Region region){
         regionRepository.save(region);
-        if(regionRepository.findById(region.getId()).isPresent()){
+        Region savedReg = regionRepository.save(region);
+        if(savedReg != null){
+            return "redirect:/region";
+        }
+        return "region/form";
+    }
+
+    @PostMapping("delete/{id}")
+    public String delete(Region region){
+        regionRepository.deleteById(region.getId());
+        if(regionRepository.findById(region.getId()).isEmpty()){
             return "redirect:/region";
         }
         return "region/form";
